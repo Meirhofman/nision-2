@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+@theme {
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --radius: 0.5rem;
+
+  /* Custom colors from requirements */
+  --color-brand-pink: #ffb6c1;
+  --color-brand-green: #c1f5c1;
+}
+
+@layer base {
+  :root {
+    --background: #fff5f7;
+    /* Very light pink/white background */
+    --foreground: #1e293b;
+    /* Slate 800 */
+
+    --card: #ffffff;
+    --card-foreground: #1e293b;
+
+    --popover: #ffffff;
+    --popover-foreground: #1e293b;
+
+    --primary: #c1f5c1;
+    /* Light Green (Leaf) for active buttons */
+    --primary-foreground: #14532d;
+    /* Dark Green for contrast text */
+
+    --secondary: #ffb6c1;
+    /* Apple Heart Pink */
+    --secondary-foreground: #831843;
+    /* Dark Pink for contrast text */
+
+    --muted: #f1f5f9;
+    /* Slate 100 - Gray for inactive elements */
+    --muted-foreground: #64748b;
+    /* Slate 500 */
+
+    --accent: #fff1f2;
+    /* Rose 50 */
+    --accent-foreground: #1e293b;
+
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+
+    --border: #e2e8f0;
+    /* Slate 200 - Light gray border */
+    --input: #e2e8f0;
+    --ring: #c1f5c1;
+    /* Focus ring matches primary color */
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: #0f172a;
+    --foreground: #f8fafc;
+
+    --card: #1e293b;
+    --card-foreground: #f8fafc;
+
+    --popover: #1e293b;
+    --popover-foreground: #f8fafc;
+
+    --primary: #c1f5c1;
+    --primary-foreground: #14532d;
+
+    --secondary: #ffb6c1;
+    --secondary-foreground: #831843;
+
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+
+    --accent: #1e293b;
+    --accent-foreground: #f8fafc;
+
+    --destructive: #7f1d1d;
+    --destructive-foreground: #f8fafc;
+
+    --border: #1e293b;
+    --input: #1e293b;
+    --ring: #c1f5c1;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+    outline-color: color-mix(in srgb, var(--ring), transparent 50%);
+  }
+
+  html {
+    height: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Hide scrollbars globally but allow scrolling */
+* {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera */
+}
+
+/* Prevent text selection where not needed for a more app-like feel */
+.app-container {
+  user-select: none;
+  touch-action: manipulation;
+}
+
+/* Safe area for notched devices (iPhone X+) */
+.pb-safe { padding-bottom: 0; }
+.pt-safe { padding-top: 0; }
+@supports (padding: env(safe-area-inset-bottom)) {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+@supports (padding: env(safe-area-inset-top)) {
+  .pt-safe {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+/* Mobile: ensure #root fills viewport for proper scroll */
+#root {
+  min-height: 100dvh;
+  min-height: 100vh;
+}
+
+/* Improve tap targets on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
